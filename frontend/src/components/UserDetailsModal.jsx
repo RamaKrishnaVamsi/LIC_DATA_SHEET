@@ -59,6 +59,9 @@ const UserDetailsModal = ({ form, onClose }) => {
   const s13 = form.section13 || {};
   const s14 = form.section14 || {};
   const s15 = form.section15 || {};
+  const s16 = form.section16 || {};
+  const s17 = form.section17 || {};
+  const s18 = form.section18 || {};
   const agent = form.agentDetails || {};
 
   const paymentMode = s7.paymentMode || "Yearly";
@@ -351,6 +354,44 @@ const UserDetailsModal = ({ form, onClose }) => {
                         <td className="p-2 font-mono text-blue-400">{mem.phoneNumber || "N/A"}</td>
                         <td className="p-2">{mem.isAlive ? <span className="text-emerald-400 font-semibold">Living</span> : <span className="text-slate-400">Deceased</span>}</td>
                         <td className="p-2">{mem.isAlive ? mem.livingDetails || "Good" : mem.causeOfDeath || "N/A"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Previous Insurance Policies */}
+          {s17.previousPolicies && s17.previousPolicies.length > 0 && (
+            <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-5">
+              <h3 className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-3 flex items-center space-x-2">
+                <FileText className="w-4 h-4" />
+                <span>Existing / Previous Insurance Policies</span>
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs text-slate-300">
+                  <thead className="bg-slate-900 text-slate-400 text-[10px] uppercase tracking-wider">
+                    <tr>
+                      <th className="p-2">Policy No</th>
+                      <th className="p-2">Institution</th>
+                      <th className="p-2">Sum Assured</th>
+                      <th className="p-2">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/60">
+                    {s17.previousPolicies.map((pol, i) => (
+                      <tr key={i}>
+                        <td className="p-2 font-mono font-semibold text-white">{pol.policyNumber || "N/A"}</td>
+                        <td className="p-2">{pol.policyIssuingInstitution || "N/A"}</td>
+                        <td className="p-2 font-semibold text-emerald-400">{formatCurrency(pol.sumAssured)}</td>
+                        <td className="p-2">
+                          {pol.isActive ? (
+                            <span className="text-emerald-400 font-semibold">Active</span>
+                          ) : (
+                            <span className="text-slate-400">Lapsed</span>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

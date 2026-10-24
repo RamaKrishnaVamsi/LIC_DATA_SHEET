@@ -1,15 +1,20 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const MongoUrl = process.env.MONGOURL || "mongodb+srv://rvsrkvamsi_db_user:WSVvMlZvE7ncrwCU@data.rpngaxu.mongodb.net/?appName=Data";
+const MongoUrl =
+  process.env.MONGO_URI ||
+  process.env.MONGODB_URI ||
+  process.env.MONGOURL ||
+  "mongodb+srv://rvsrkvamsi_db_user:WSVvMlZvE7ncrwCU@data.rpngaxu.mongodb.net/?appName=Data";
 
-main().then(()=>{
-    console.log("Mongodb connected succesfully")
-}).catch((err)=>{
-    console.log(err);
-    console.log("mogodb connection error",err.message)
-    process.exit(1);
-})
-
-async function main(){
+async function connectDB() {
+  try {
     await mongoose.connect(MongoUrl);
+    console.log("MongoDB connected successfully");
+  } catch (err) {
+    console.error("MongoDB connection error:", err.message);
+  }
 }
+
+connectDB();
+
+module.exports = connectDB;
