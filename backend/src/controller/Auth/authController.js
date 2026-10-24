@@ -137,8 +137,6 @@ exports.login = async (req , res) => {
 };
 
 const { sendOTPEmail } = require("../../config/mailer.js");
-// import User from "../models/user.js";
-// import { sendOTPEmail } from "../mailer.js";
 
 exports.sendResetOTP = async (req, res) => {
     try {

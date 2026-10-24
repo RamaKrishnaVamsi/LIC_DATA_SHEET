@@ -82,6 +82,7 @@ const InsuranceFormPage = () => {
 
   const [docCategory, setDocCategory] = useState("Customer Signature / Specimen Signature");
   const [docCustomName, setDocCustomName] = useState("");
+  const [previewDoc, setPreviewDoc] = useState(null);
 
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files || []);
